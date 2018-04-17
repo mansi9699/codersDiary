@@ -39,25 +39,22 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder>
         EventList listItem = listEvent.get(position);
 
         holder.event.setText(listItem.getEvent());
+        holder.desc.setText(listItem.getDesc());
         holder.imageView.setImageResource(listItem.getImage());
-        holder.itemsView = listItem.getItems();
 
         holder.parent_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (position == 0) {
                     Intent intent = new Intent(context, Live.class);
-                    intent.putExtra("subs",holder.itemsView);
                     context.startActivity(intent);
                 }
                 else if (position == 1){
                     Intent intent = new Intent(context,Upcoming.class);
-                    intent.putExtra("subs",holder.itemsView);
                     context.startActivity(intent);
                 }
                 else if (position == 2){
                     Intent intent = new Intent(context, Ended.class);
-                    intent.putExtra("subs",holder.itemsView);
                     context.startActivity(intent);
                 }
             }
@@ -72,14 +69,15 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder>
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView event;
+        public TextView desc;
         public ImageView imageView;
-        public String[]itemsView;
         public RelativeLayout parent_layout;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             event = (TextView)itemView.findViewById(R.id.eventTextView);
+            desc = (TextView)itemView.findViewById(R.id.description);
             imageView = (ImageView)itemView.findViewById(R.id.eventImageView);
             parent_layout = (RelativeLayout)itemView.findViewById(R.id.parent_layout);
         }

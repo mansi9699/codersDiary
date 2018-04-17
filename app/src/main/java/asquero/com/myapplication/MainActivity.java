@@ -2,6 +2,7 @@ package asquero.com.myapplication;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,6 +21,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -51,10 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private DrawerLayout mDrawer;
-    private ActionBarDrawerToggle mToggle;
+public class MainActivity extends AppCompatActivity{
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter eventListAdapter;
@@ -65,33 +64,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String cdmessage_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/cdmessage/?format=json";
 
 
-    /**
-     * Tag for the log messages
-     */
-    public static final String LOG_TAG = MainActivity.class.getSimpleName();
-
-    /**
-     * URL to query the USGS dataset for earthquake information
-     */
-    private static final String USGS_REQUEST_URL =
-            "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2012-01-01&endtime=2012-12-01&minmagnitude=6";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDrawer = (DrawerLayout) findViewById(R.id.navDrawer);
-        mToggle = new ActionBarDrawerToggle(this, mDrawer, R.string.open, R.string.close);
 
-        mDrawer.addDrawerListener(mToggle);
-        mToggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -106,17 +84,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView cdm = (TextView) findViewById(R.id.message);
         message(cdmessage_URL, cdm);
 
-        for (int i = 0; i <= 2; i++) {
-            if (i == 0) {
-                EventList listItem = new EventList("Live", (R.drawable.live));
+        for (int i = 0; i<= 2 ; i++){
+            if (i==0) {
+                EventList listItem = new EventList("Live:"," One's which have started earliest", (R.drawable.live));
                 listEvent.add(listItem);
             }
-            if (i == 1) {
-                EventList listItem = new EventList("Upcoming", (R.drawable.upcoming));
+            if (i==1) {
+                EventList listItem = new EventList("Upcoming:"," One's which are the closest in time to start", (R.drawable.upcoming));
                 listEvent.add(listItem);
             }
-            if (i == 2) {
-                EventList listItem = new EventList("Ended", (R.drawable.ended));
+            if (i==2) {
+                EventList listItem = new EventList("Ended:"," One's which have most recently ended", (R.drawable.ended));
                 listEvent.add(listItem);
             }
         }
@@ -127,19 +105,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigation_menu,menu);
+        return true;
     }
 
-
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        return true;
+        if (id == R.id.about){
+
+            Intent intent = new Intent(this,About.class);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void message(final String cdmessage_url, final TextView cdm) {

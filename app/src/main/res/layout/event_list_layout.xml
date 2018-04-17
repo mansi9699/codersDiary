@@ -23,16 +23,38 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/default_image" />
 
-            <TextView
-                android:id="@+id/eventTextView"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="5dp"
-                android:gravity="left"
-                android:text="Sample"
-                android:textColor="#FFFFFF"
-                android:textSize="28sp" />
+                android:layout_alignParentStart="true"
+                android:alpha="0.9"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/eventTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:text="Sample"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/eventTextView"
+                    android:gravity="center"
+                    android:paddingTop="3dp"
+                    android:text="TextView"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
 
         </RelativeLayout>
 

@@ -6,19 +6,13 @@ package asquero.com.myapplication;
 
 class EventList {
     private String event;
+    private String desc;
     private int image;
-    private String[] items;
 
-    public EventList(String event, int image, String[] items) {
+    public EventList(String event, String desc, int image) {
         this.event = event;
+        this.desc = desc;
         this.image = image;
-        this.items = items;
-    }
-
-    public EventList(String event, int image) {
-        this.event = event;
-        this.image = image;
-
     }
 
     public String getEvent() {
@@ -29,7 +23,7 @@ class EventList {
         return image;
     }
 
-    public String[] getItems() {
-        return items;
+    public String getDesc() {
+        return desc;
     }
 }

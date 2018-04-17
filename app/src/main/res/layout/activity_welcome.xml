@@ -34,7 +34,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/logo" />
+            android:src="@drawable/ic_logo3" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -52,6 +52,15 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:text="Coder's Dairy" />
+
+        <TextView
+            android:id="@+id/company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="95dp"
+            android:text="@string/asqueroCpr" />
     </RelativeLayout>
 
 </RelativeLayout>
