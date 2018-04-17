@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -35,6 +36,7 @@ public class Live extends AppCompatActivity {
     private RecyclerView.Adapter liveListAdapter;
 
     private List<LiveList> listLive;
+
     private String JSON_Codechef_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/codechef/?cstatus=1&format=json";
     private String JSON_Spoj_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/spoj/?cstatus=1&format=json";
     private String JSON_Hackerrank_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/hackerrank/?cstatus=1&format=json";
@@ -44,6 +46,8 @@ public class Live extends AppCompatActivity {
     TextView noInternetConnection;
     ProgressBar progressBar;
     TextView searchingdata;
+    int size = 0;
+    int responseCounter = 0;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -64,13 +68,12 @@ public class Live extends AppCompatActivity {
 
         noInternetConnection = (TextView) findViewById(R.id.noInternetConnection);
 
-        if(!networkConnectivity()){
+        if (!networkConnectivity()) {
 
             recyclerView.setVisibility(View.INVISIBLE);
             noInternetConnection.setVisibility(View.VISIBLE);
             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             loadLiveData(noInternetConnection);
         }
@@ -83,13 +86,16 @@ public class Live extends AppCompatActivity {
                         Log.i("Swipe Refresh", "onRefresh called from SwipeRefreshLayout");
 
                         recyclerView.setVisibility(View.INVISIBLE);
-                        if(!networkConnectivity()){
+                        if (!networkConnectivity()) {
 
                             noInternetConnection.setVisibility(View.VISIBLE);
                             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            size = 0;
+                            responseCounter = 0;
+                            listLive.clear();
+                            liveListAdapter.notifyDataSetChanged();
                             loadLiveData(noInternetConnection);
                         }
 
@@ -99,16 +105,15 @@ public class Live extends AppCompatActivity {
 
                                 mySwipeRefreshLayout.setRefreshing(false);
                             }
-                        },3000);
+                        }, 3000);
                     }
                 }
         );
 
-
     }
 
 
-    public void loadLiveData(TextView noInternetConnection){
+    public void loadLiveData(TextView noInternetConnection) {
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         searchingdata = (TextView) findViewById(R.id.searchingData);
@@ -116,26 +121,25 @@ public class Live extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         searchingdata.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
-        int c = 0;
 
         //Codechef data request*************************************************************************************************
 
-        dataRequest(JSON_Codechef_URL, "codechef", c++, progressBar, searchingdata, noInternetConnection);
+        dataRequest(JSON_Codechef_URL, "codechef", progressBar, searchingdata, R.drawable.codechef_logo);
 
 
         //Spoj data request*****************************************************************************************************
 
-        dataRequest(JSON_Spoj_URL, "spoj", c++, progressBar, searchingdata, noInternetConnection);
+        dataRequest(JSON_Spoj_URL, "spoj", progressBar, searchingdata, R.drawable.spoj_logo);
 
         //Hackerrank data request***********************************************************************************************
 
-        dataRequest(JSON_Hackerrank_URL, "hackerrank", c++, progressBar, searchingdata, noInternetConnection);
+        dataRequest(JSON_Hackerrank_URL, "hackerrank", progressBar, searchingdata, R.drawable.hackerrank_logo);
 
         //progressBar.setVisibility(View.INVISIBLE);
 
     }
 
-    public void dataRequest(String JSON_URL, final String site, final int c, final ProgressBar progressBar, final TextView searchingData, final TextView noInternetConnection){
+    public void dataRequest(String JSON_URL, final String site, final ProgressBar progressBar, final TextView searchingData, final int contestImageSource) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JSON_URL, null,
 
@@ -146,18 +150,17 @@ public class Live extends AppCompatActivity {
 
                         try {
 
-
-                            for(int i = 0 ; i < response.length() ; i++) {
+                             for (int i = 0; i < response.length(); i++) {
 
                                 JSONObject liveJsonObj = response.getJSONObject(i);
 
                                 /*Toast.makeText(getApplicationContext(), response.toString(), Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getApplicationContext(), liveJsonObj.toString(), Toast.LENGTH_SHORT).show();*/
 
-                                String code = liveJsonObj.getString("ccode_"+site);
-                                String name = liveJsonObj.getString("cname_"+site);
-                                String startdate = liveJsonObj.getString("cstartdate_"+site);
-                                String enddate = liveJsonObj.getString("cenddate_"+site);
+                                String code = liveJsonObj.getString("ccode_" + site);
+                                String name = liveJsonObj.getString("cname_" + site);
+                                String startdate = liveJsonObj.getString("cstartdate_" + site);
+                                String enddate = liveJsonObj.getString("cenddate_" + site);
                                 //int status = liveJsonObj.getInt("codechef_cstatus");
 
                                 /*Toast.makeText(getApplicationContext(), code, Toast.LENGTH_SHORT).show();
@@ -166,30 +169,41 @@ public class Live extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), enddate, Toast.LENGTH_SHORT).show();*/
 
                                 //String imageUrl = "https://edsurge.imgix.net/uploads/post/image/7747/Kids_coding-1456433921.jpg?auto=compress%2Cformat&w=2000&h=810&fit=crop";
-                                mostRelevantImage mri = new mostRelevantImage();
-                                String url = mri.findMostPerfectImage(code, name, startdate, enddate , context, i);
+                                if(contestChosen(startdate, enddate, site)) {
 
-                                if(url.isEmpty())
-                                {
-                                    url = "https://www.computerhope.com/jargon/e/error.gif";
+                                    startdate = returnFormattedDate(startdate, site);
+                                    enddate = returnFormattedDate(enddate, site);
+
+                                    mostRelevantImage mri = new mostRelevantImage();
+                                    String url = mri.findMostPerfectImage(code, name, startdate, enddate, context, i);
+
+                                    if (url.isEmpty()) {
+                                        url = "https://www.computerhope.com/jargon/e/error.gif";
+                                    }
+
+                                    LiveList liveListObj = new LiveList(code, name, startdate, enddate, contestImageSource, url, name, "Pexels.com");
+
+                                    listLive.add(liveListObj);
                                 }
-
-                                LiveList liveListObj = new LiveList(code, name, startdate, enddate,R.drawable.default_image, url, name,"Here");
-
-                                listLive.add(liveListObj);
                             }
 
-                            liveListAdapter = new LiveListAdapter(listLive,Live.this);
+                            responseCounter += 1;
 
-                            Log.i("counter progressbar", ""+c);
-                            if(c == 2) {
+                            Log.i("responseCounter", "***" + responseCounter);
+
+                            if (responseCounter == 3) {
+
+                                size = listLive.size();
+
+                                sort_list_live();
+
+                                liveListAdapter = new LiveListAdapter(listLive, Live.this);
+                                recyclerView.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.INVISIBLE);
                                 searchingData.setVisibility(View.INVISIBLE);
+                                recyclerView.setAdapter(liveListAdapter);
+
                             }
-                            recyclerView.setVisibility(View.VISIBLE);
-                            recyclerView.setAdapter(liveListAdapter);
-
-
 
 
                         } catch (Exception e) {
@@ -200,25 +214,23 @@ public class Live extends AppCompatActivity {
                     }
                 },
 
-                new Response.ErrorListener(){
+                new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         //displaying the error in toast if occurrs
-                        if(!networkConnectivity()){
+                        if (!networkConnectivity()) {
 
                             progressBar.setVisibility(View.INVISIBLE);
                             searchingData.setVisibility(View.INVISIBLE);
                             noInternetConnection.setVisibility(View.VISIBLE);
                             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         //Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
                     }
                 });
-
 
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -228,12 +240,85 @@ public class Live extends AppCompatActivity {
 
     }
 
-    public boolean networkConnectivity(){
+    public boolean networkConnectivity() {
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         return (networkInfo != null && networkInfo.isConnected());
+
+    }
+
+    public boolean contestChosen(String startdate, String enddate, String contest) {
+
+        DayMonthYear dmy = new DayMonthYear();
+
+        int startyear = dmy.returnYear(startdate, contest);
+        int endyear = dmy.returnYear(enddate, contest);
+
+        if(endyear < startyear) {
+
+            return false;
+
+        }
+        else if(endyear - startyear > 1){
+
+            return false;
+
+        }
+        else{
+
+            return true;
+
+        }
+
+    }
+
+
+    public String returnFormattedDate(String date, String contest) {
+
+        DayMonthYear dmy = new DayMonthYear();
+
+        int day = dmy.returnDay(date, contest);
+        String month = dmy.returnMonth(date, contest);
+        int year = dmy.returnYear(date, contest);
+
+        String str = day + "" + month + "" + year;
+        return str;
+
+    }
+
+    public void sort_list_live(){
+
+        LiveList ll = null;
+
+        DayMonthYear dmy = new DayMonthYear();
+        Log.i("size", size+"***");
+
+        for(int b = 0 ; b < size ; b++) {
+
+            Log.i("listLiveInitial", listLive.get(b).getStartDate()+"***"+b);
+
+            for (int a = 0; a < size-1; a++) {
+
+                String startDate1 = listLive.get(a).getStartDate();
+                int sd1 = dmy.returnDateNum(startDate1);
+                Log.i("startdate1", startDate1+"***"+sd1);
+
+                String startDate2 = listLive.get(a + 1).getStartDate();
+                int sd2 = dmy.returnDateNum(startDate2);
+                Log.i("startyear2", startDate2+"***"+sd2);
+
+                if (sd1 > sd2) {
+
+                    ll = listLive.get(a);
+                    listLive.set(a, listLive.get(a+1));
+                    listLive.set(a+1, ll);
+                }
+            }
+            //listLiveSort.add(ll);
+            Log.i("listLiveFinal", listLive.get(b).getStartDate()+"***"+b);
+        }
 
     }
 

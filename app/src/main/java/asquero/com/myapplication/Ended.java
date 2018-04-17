@@ -47,6 +47,8 @@ public class Ended extends AppCompatActivity {
     TextView noInternetConnection;
     ProgressBar progressBar;
     TextView searchingdata;
+    int size = 0;
+    int responseCounter = 0;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -66,13 +68,12 @@ public class Ended extends AppCompatActivity {
 
         noInternetConnection = (TextView) findViewById(R.id.noInternetConnection);
 
-        if(!networkConnectivity()){
+        if (!networkConnectivity()) {
 
             recyclerView.setVisibility(View.INVISIBLE);
             noInternetConnection.setVisibility(View.VISIBLE);
             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             loadEndedData(noInternetConnection);
         }
@@ -93,13 +94,16 @@ public class Ended extends AppCompatActivity {
                         Log.i("Swipe Refresh", "onRefresh called from SwipeRefreshLayout");
 
                         recyclerView.setVisibility(View.INVISIBLE);
-                        if(!networkConnectivity()){
+                        if (!networkConnectivity()) {
 
                             noInternetConnection.setVisibility(View.VISIBLE);
                             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                        } else {
                             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            size = 0;
+                            responseCounter = 0;
+                            listEnded.clear();
+                            endedListAdapter.notifyDataSetChanged();
                             loadEndedData(noInternetConnection);
                         }
 
@@ -109,7 +113,7 @@ public class Ended extends AppCompatActivity {
 
                                 mySwipeRefreshLayout.setRefreshing(false);
                             }
-                        },3500);
+                        }, 3500);
                     }
                 }
         );
@@ -124,25 +128,24 @@ public class Ended extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         searchingdata.setVisibility(View.VISIBLE);
 
-        int c = 0;
         //Codechef data request*************************************************************************************************
 
-        dataRequest(JSON_Codechef_URL, "codechef", c++, progressBar, searchingdata);
+        dataRequest(JSON_Codechef_URL, "codechef", progressBar, searchingdata, R.drawable.codechef_logo);
 
 
         //Spoj data request*****************************************************************************************************
 
-        dataRequest(JSON_Spoj_URL, "spoj", c++, progressBar, searchingdata);
+        dataRequest(JSON_Spoj_URL, "spoj", progressBar, searchingdata, R.drawable.spoj_logo);
 
         //Hackerrank data request***********************************************************************************************
 
-        dataRequest(JSON_Hackerrank_URL, "hackerrank", c++, progressBar, searchingdata);
+        dataRequest(JSON_Hackerrank_URL, "hackerrank", progressBar, searchingdata, R.drawable.hackerrank_logo);
 
         //progressBar.setVisibility(View.INVISIBLE);
 
     }
 
-    public void dataRequest(String JSON_URL, final String site, final int c, final ProgressBar progressBar, final TextView searchingData) {
+    public void dataRequest(String JSON_URL, final String site, final ProgressBar progressBar, final TextView searchingData, final int contestImageSource) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JSON_URL, null,
 
@@ -173,28 +176,41 @@ public class Ended extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), enddate, Toast.LENGTH_SHORT).show();*/
 
                                 //String imageUrl = "https://edsurge.imgix.net/uploads/post/image/7747/Kids_coding-1456433921.jpg?auto=compress%2Cformat&w=2000&h=810&fit=crop";
-                                mostRelevantImage mri = new mostRelevantImage();
-                                String url = mri.findMostPerfectImage(code, name, startdate, enddate, context, i);
+                                if (contestChosen(startdate, enddate, site)) {
 
-                                if (url.isEmpty()) {
-                                    url = "https://www.computerhope.com/jargon/e/error.gif";
+                                    startdate = returnFormattedDate(startdate, site);
+                                    enddate = returnFormattedDate(enddate, site);
+
+                                    mostRelevantImage mri = new mostRelevantImage();
+                                    String url = mri.findMostPerfectImage(code, name, startdate, enddate, context, i);
+
+                                    if (url.isEmpty()) {
+                                        url = "https://www.computerhope.com/jargon/e/error.gif";
+                                    }
+
+                                    EndedList upcomingListObj = new EndedList(code, name, startdate, enddate, contestImageSource, url, name, "Pexels.com");
+
+                                    listEnded.add(upcomingListObj);
                                 }
-
-                                EndedList upcomingListObj = new EndedList(code, name, startdate, enddate,R.drawable.default_image, url, name,"Here");
-
-                                listEnded.add(upcomingListObj);
                             }
 
-                            endedListAdapter = new EndedListAdapter(listEnded, Ended.this);
+                            responseCounter += 1;
 
-                            Log.i("counter progressbar", ""+c);
-                            if(c == 2) {
+                            Log.i("responseCounter", "***" + responseCounter);
 
+                            if (responseCounter == 3) {
+
+                                size = listEnded.size();
+
+                                sort_list_ended();
+
+                                endedListAdapter = new EndedListAdapter(listEnded, Ended.this);
+                                recyclerView.setVisibility(View.VISIBLE);
                                 progressBar.setVisibility(View.INVISIBLE);
                                 searchingData.setVisibility(View.INVISIBLE);
+                                recyclerView.setAdapter(endedListAdapter);
+
                             }
-                            recyclerView.setVisibility(View.VISIBLE);
-                            recyclerView.setAdapter(endedListAdapter);
 
 
                         } catch (Exception e) {
@@ -229,12 +245,83 @@ public class Ended extends AppCompatActivity {
         requestQueue.add(jsonArrayRequest);
     }
 
-    public boolean networkConnectivity(){
+    public boolean networkConnectivity() {
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         return (networkInfo != null && networkInfo.isConnected());
+
+    }
+
+    public boolean contestChosen(String startdate, String enddate, String contest) {
+
+        DayMonthYear dmy = new DayMonthYear();
+
+        int startyear = dmy.returnYear(startdate, contest);
+        int endyear = dmy.returnYear(enddate, contest);
+
+        if (endyear < startyear) {
+
+            return false;
+
+        } else if (endyear - startyear > 1) {
+
+            return false;
+
+        } else {
+
+            return true;
+
+        }
+
+    }
+
+
+    public String returnFormattedDate(String date, String contest) {
+
+        DayMonthYear dmy = new DayMonthYear();
+
+        int day = dmy.returnDay(date, contest);
+        String month = dmy.returnMonth(date, contest);
+        int year = dmy.returnYear(date, contest);
+
+        String str = day + "" + month + "" + year;
+        return str;
+
+    }
+
+    public void sort_list_ended() {
+
+        EndedList ll = null;
+
+        DayMonthYear dmy = new DayMonthYear();
+        Log.i("size", size + "***");
+
+        for (int b = 0; b < size; b++) {
+
+            Log.i("listLiveInitial", listEnded.get(b).getEndDate() + "***" + b);
+
+            for (int a = 0; a < size - 1; a++) {
+
+                String endDate1 = listEnded.get(a).getEndDate();
+                int ed1 = dmy.returnDateNum(endDate1);
+                Log.i("enddate1", endDate1 + "***" + ed1);
+
+                String endDate2 = listEnded.get(a + 1).getEndDate();
+                int ed2 = dmy.returnDateNum(endDate2);
+                Log.i("endyear2", endDate2 + "***" + ed2);
+
+                if (ed1 < ed2) {
+
+                    ll = listEnded.get(a);
+                    listEnded.set(a, listEnded.get(a + 1));
+                    listEnded.set(a + 1, ll);
+                }
+            }
+            //listLiveSort.add(ll);
+            Log.i("listLiveFinal", listEnded.get(b).getEndDate() + "***" + b);
+        }
 
     }
 
