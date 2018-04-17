@@ -1,7 +1,10 @@
 package asquero.com.myapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -18,8 +21,18 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private List<EventList> listEvent;
 
+    String cdmessage;
+    String cdmessage_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/cdmessage/?format=json";
+
 
     /**
      * Tag for the log messages
@@ -66,13 +82,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mDrawer = (DrawerLayout)findViewById(R.id.navDrawer);
-        mToggle = new ActionBarDrawerToggle(this,mDrawer,R.string.open,R.string.close);
+        mDrawer = (DrawerLayout) findViewById(R.id.navDrawer);
+        mToggle = new ActionBarDrawerToggle(this, mDrawer, R.string.open, R.string.close);
 
         mDrawer.addDrawerListener(mToggle);
         mToggle.syncState();
 
-        NavigationView navigationView = (NavigationView)findViewById(R.id.navView);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
         navigationView.setNavigationItemSelectedListener(this);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,30 +103,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
         //rl.removeView(tv);
 
+        TextView cdm = (TextView) findViewById(R.id.message);
+        message(cdmessage_URL, cdm);
 
-        for (int i = 0; i<= 2 ; i++){
-            if (i==0) {
+        for (int i = 0; i <= 2; i++) {
+            if (i == 0) {
                 EventList listItem = new EventList("Live", (R.drawable.live));
                 listEvent.add(listItem);
             }
-            if (i==1) {
+            if (i == 1) {
                 EventList listItem = new EventList("Upcoming", (R.drawable.upcoming));
                 listEvent.add(listItem);
             }
-            if (i==2) {
+            if (i == 2) {
                 EventList listItem = new EventList("Ended", (R.drawable.ended));
                 listEvent.add(listItem);
             }
         }
 
-        eventListAdapter = new EventListAdapter(listEvent,this);
+        eventListAdapter = new EventListAdapter(listEvent, this);
         recyclerView.setAdapter(eventListAdapter);
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item)){
+        if (mToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -122,5 +140,73 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         return true;
+    }
+
+    public void message(final String cdmessage_url, final TextView cdm) {
+
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, cdmessage_url, null,
+
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+
+
+                        try {
+
+
+                            JSONObject JsonObj = response.getJSONObject(0);
+                            cdmessage = JsonObj.getString("message");
+
+                            Log.i("cd_message", cdmessage + "***");
+
+                            //TextView noInternetConnection = (TextView) findViewById(R.id.noInternetConnection);
+
+                            if (cdmessage.toString() == "") {
+                                cdm.setVisibility(View.INVISIBLE);
+                            } else {
+                                cdm.setText(cdmessage.toString());
+                                cdm.setVisibility(View.VISIBLE);
+                            }
+
+
+                        } catch (Exception e) {
+
+                            e.printStackTrace();
+
+                        }
+                    }
+                },
+
+                new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //displaying the error in toast if occurrs
+                        if (!networkConnectivity()) {
+
+                            cdm.setVisibility(View.INVISIBLE);
+                            //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                        //Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(jsonArrayRequest);
+
+    }
+
+    public boolean networkConnectivity() {
+
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        return (networkInfo != null && networkInfo.isConnected());
+
     }
 }
