@@ -10,8 +10,10 @@
         android:id="@+id/AppIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_logo3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="185dp"
+        app:srcCompat="@drawable/ic_logo3_inapp"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView
@@ -20,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="169dp"
+        android:layout_marginTop="132dp"
         android:text="@string/coder_s_diary" />
 
     <TextView
@@ -29,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="171dp"
+        android:layout_marginBottom="220dp"
         android:text="App Version" />
 
     <TextView
@@ -38,6 +40,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="138dp"
+        android:layout_marginBottom="183dp"
         android:text="TextView" />
+
+    <TextView
+        android:id="@+id/company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="96dp"
+        android:text="@string/asqueroCpr" />
 </RelativeLayout>

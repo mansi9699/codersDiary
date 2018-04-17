@@ -31,7 +31,7 @@ public class About extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        version.setText(versionNames);
+        version.setText("Ver.: ".concat(versionNames));
     }
 
 }

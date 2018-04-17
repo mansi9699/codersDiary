@@ -9,8 +9,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_logo3"
-        android:label="Coder&apos;s Dairy"
-        android:roundIcon="@drawable/ic_logo3"
+        android:label="@string/coder_s_diary"
+        android:roundIcon="@drawable/ic_logo3_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label">
@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:label="@string/coder_s_diary"/>
         <activity
             android:name=".Live"
             android:parentActivityName=".MainActivity" />
