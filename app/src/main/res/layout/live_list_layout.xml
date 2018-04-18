@@ -93,8 +93,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintHorizontal_bias="0.501"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent">
 
@@ -108,7 +109,6 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="4dp"
                         android:text="@string/contest_code"
-                        card_view:layout_constraintHorizontal_bias="0.501"
                         card_view:layout_constraintLeft_toLeftOf="parent"
                         card_view:layout_constraintRight_toRightOf="parent"
                         card_view:layout_constraintTop_toTopOf="parent" />
@@ -119,10 +119,12 @@
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@+id/contestCode"
                         android:layout_below="@+id/contestCode"
+                        android:layout_marginBottom="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/contest_name"
-                        card_view:layout_constraintHorizontal_bias="0.501"
+                        card_view:layout_constraintBottom_toBottomOf="parent"
                         card_view:layout_constraintLeft_toLeftOf="parent"
                         card_view:layout_constraintRight_toRightOf="parent"
                         card_view:layout_constraintTop_toBottomOf="@+id/contestCode" />
@@ -142,7 +144,7 @@
                     card_view:layout_constraintLeft_toLeftOf="parent"
                     card_view:layout_constraintRight_toRightOf="parent"
                     card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout1"
-                    card_view:layout_constraintVertical_bias="0.0">
+                    card_view:layout_constraintVertical_bias="1.0">
 
                     <TextView
                         android:id="@+id/startDate"
