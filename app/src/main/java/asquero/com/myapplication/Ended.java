@@ -174,7 +174,9 @@ public class Ended extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getApplicationContext(), startdate, Toast.LENGTH_SHORT).show();
                                 Toast.makeText(getApplicationContext(), enddate, Toast.LENGTH_SHORT).show();*/
-
+                                if(code.equalsIgnoreCase("Null")){
+                                    code = "";
+                                }
                                 //String imageUrl = "https://edsurge.imgix.net/uploads/post/image/7747/Kids_coding-1456433921.jpg?auto=compress%2Cformat&w=2000&h=810&fit=crop";
                                 if (contestChosen(startdate, enddate, site)) {
 
