@@ -1,147 +1,68 @@
 {
   "imagesJson": [
-    {
-      "Url": "https://images.pexels.com/photos/247791/pexels-photo-247791.png?auto=compress&cs=tinysrgb&h=750&w=1260",
-      "Source": "TEXT100",
-      "Keywords": [
-        "coding",
-        "digital marketers"
-      ]
+    {"Url" : "https://thumb9.shutterstock.com/display_pic_with_logo/1355392/577183882/stock-photo-software-developer-programming-code-abstract-computer-script-code-programming-code-screen-of-577183882.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["software developer","programming code","computer script code","code screen","software developer","code text"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "THE TELEGRAPH",
-      "Keywords": [
-        "Fundamentals of coding",
-        "who needs code"
-      ]
+    {"Url" : "https://thumb1.shutterstock.com/display_pic_with_logo/1355392/632918576/stock-photo-software-developer-programming-code-abstract-computer-script-code-programming-code-screen-of-632918576.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["program","code","code screen","signs","symbols","flag","event"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/6482/black-and-white-man-person-hands.jpg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "BGO SOFTWARE",
-      "Keywords": [
-        "Addicted to coding",
-        "brain wired",
-        "curious way of coding"
-      ]
+    {"Url" : "https://thumb7.shutterstock.com/display_pic_with_logo/3092849/606046391/stock-vector-vector-streaming-binary-code-background-data-and-technology-decryption-and-encryption-computer-606046391.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" :  ["1","0","code","binary","decrypt","encrypt","vector","complex"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/248515/pexels-photo-248515.png?auto=compress&cs=tinysrgb&h=350",
-      "Source": "THINK 360",
-      "Keywords": [
-        "Learn to code",
-        "Learn",
-        "CodeAcademy",
-        "Free Code Camp",
-        "Coursera",
-        "general assembly",
-        "udemy",
-        "udacity"
-      ]
+    {"Url" : "https://thumb1.shutterstock.com/display_pic_with_logo/1784291/535124956/stock-photo-programming-code-abstract-technology-background-of-software-developer-and-computer-script-535124956.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["programming","virtual","internet","data","screen","code"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "GETTING SMART",
-      "Keywords": [
-        "cause to code",
-        "data resources"
-      ]
+    {"Url" : "https://thumb7.shutterstock.com/display_pic_with_logo/3673289/421269664/stock-vector-code-icon-in-trendy-flat-style-isolated-on-grey-background-code-symbol-for-your-web-site-design-421269664.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["html","website","web","design","code icon","website development"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "WEEBLY",
-      "Keywords": [
-        "Program",
-        "Programming",
-        "Coding",
-        "Algorithms"
-      ]
+    {"Url" : "https://thumb9.shutterstock.com/display_pic_with_logo/3252050/740523562/stock-vector-abstract-futuristic-cyberspace-with-binary-code-matrix-background-with-digits-well-organized-740523562.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["green","dark","futuristic","cyber space","matrix","well orgnanized layers","illustration","binary code","code","technology"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "WEEBLY",
-      "Keywords": [
-        "coding everything",
-        "C hash",
-        "microsoft",
-        "google",
-        "coding"
-      ]
+    {"Url" : "https://thumb7.shutterstock.com/display_pic_with_logo/273481/613463807/stock-photo-developing-programming-and-coding-technologies-website-design-cyber-space-concept-613463807.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["develop","programming","coding tehnologies","team","programming","thinking","work","screen"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/574073/pexels-photo-574073.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "SUMMER CAMPS",
-      "Keywords": [
-        "computer coding camp",
-        "coding camp"
-      ]
+    {"Url" : "https://thumb1.shutterstock.com/display_pic_with_logo/2117717/338631620/stock-photo-php-programming-html-coding-cyberspace-concept-338631620.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["php","html","coding","concepts","blue","css","tags"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "CODE LIKE A GIRL",
-      "Keywords": [
-        "coding in real world",
-        "coding in college",
-        "writing code",
-        "code like a girl"
-      ]
+    {"Url" : "https://thumb7.shutterstock.com/display_pic_with_logo/2741491/578229397/stock-vector-laptop-vector-icon-578229397.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["click","code","computer","web","technology","software","graphic","graphic design"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "SIMPLY DIGITAL",
-      "Keywords": [
-        "coding for kids",
-        "learn programming",
-        "the digital ninja"
-      ]
+    {"Url" : "https://images.pexels.com/photos/6482/black-and-white-man-person-hands.jpg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "Source" : "PEXELS",
+      "Keywords" : ["coffee","relax","programming","begin","hobby"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "CODAKID",
-      "Keywords": [
-        "javascript",
-        "python",
-        "css",
-        "html",
-        "c++",
-        "php",
-        "arduino",
-        "ruby",
-        "perl"
-      ]
+    {"Url" : "https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "Source" : "PEXELS",
+      "Keywords" : ["html","code","css","programmer","script","php","web dev","frontend","bootstrap","jquery"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/270623/pexels-photo-270623.png?auto=compress&cs=tinysrgb&h=350",
-      "Source": "LEARNING WORKS FOR KIDS",
-      "Keywords": [
-        "khan academy",
-        "hours of code"
-      ]
+    {"Url" : "https://images.pexels.com/photos/7059/man-people-space-desk.jpg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "Source" : "PEXELS",
+      "Keywords" : ["work","workspace","desk","program","hard","pen","paper","write","training"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/60626/pexels-photo-60626.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "ZAZHI",
-      "Keywords": [
-        "fear of coding",
-        "fear",
-        "freight"
-      ]
+    {"Url" : "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      "Source" : "PEXELS",
+      "Keywords" : ["glasses","programming","work","continue","sprint"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/265110/pexels-photo-265110.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "E WEEK",
-      "Keywords": [
-        "coding developer",
-        "java"
-      ]
+    {"Url" : "https://images.pexels.com/photos/247932/pexels-photo-247932.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "Source" : "PIXABAY",
+      "Keywords" : ["robotics","robots","artificial intelligence","AI","complex"]
     },
-    {
-      "Url": "https://images.pexels.com/photos/360591/pexels-photo-360591.jpeg?auto=compress&cs=tinysrgb&h=350",
-      "Source": "CODING WEEK",
-      "Keywords": [
-        "coding week",
-        "national coding week"
-      ]
+    {"Url" : "https://images.pexels.com/photos/355988/pexels-photo-355988.jpeg?auto=compress&cs=tinysrgb&h=350",
+      "Source" : "PIXABAY",
+      "Keywords" : ["idea","technology","think","imagination","innovate","innovative","code think"]
+    },
+    {"Url" : "https://thumb9.shutterstock.com/display_pic_with_logo/655432/465653942/stock-photo-businessman-shaking-digital-partners-hand-on-blue-background-465653942.jpg",
+      "Source" : "SHUTTERSTOCK",
+      "Keywords" : ["digital market","business","partner","handshake","robots","artificial","future"]
     }
   ]
 }

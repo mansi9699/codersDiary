@@ -26,7 +26,7 @@ public class mostRelevantImage {
 
     public String findMostPerfectImage(String cc, String cn, String cs, String ce, Context live, int a){
 
-        String con = cc + " " + cn;
+        //String con = cc + " " + cn;
 
         try {
 
@@ -34,44 +34,44 @@ public class mostRelevantImage {
 
             JSONArray imagesArray = imagesObj.getJSONArray("imagesJson");
 
-            double d1 = 0,d2=0;
+            //double d1 = 0,d2=0;
 
-            JSONObject imagesListObj1 = imagesArray.getJSONObject(0);
+            JSONObject imagesListObj1 = imagesArray.getJSONObject(a);
 
 
             url1 = imagesListObj1.getString("Url");
-            JSONArray keyList1 = (JSONArray) imagesListObj1.get("Keywords");
+            //JSONArray keyList1 = (JSONArray) imagesListObj1.get("Keywords");
 
-            for (int b = 0; b < keyList1.length(); b++) {
+            /*for (int b = 0; b < keyList1.length(); b++) {
 
                 String keyStr1 = keyList1.getString(b);
                 d1 = d1 + distance(keyStr1, con);
-            }
+            }*/
 
-            curl = url1;
-            for(int i = 1 ; i < imagesArray.length() ; i++) {
+            //curl = url1;
+            //for(int i = 1 ; i < imagesArray.length() ; i++) {
 
-                    d2 = 0;
+//                    d2 = 0;
 
-                    JSONObject imagesListObj2 = imagesArray.getJSONObject(i);
+//                    JSONObject imagesListObj2 = imagesArray.getJSONObject(a);
 
-                    url2 = imagesListObj2.getString("Url");
-                    JSONArray keyList2 = (JSONArray) imagesListObj2.get("Keywords");
+//                    url2 = imagesListObj2.getString("Url");
+                    /*JSONArray keyList2 = (JSONArray) imagesListObj2.get("Keywords");
 
                     for (int b = 0; b < keyList2.length(); b++) {
 
                         String keyStr2 = keyList2.getString(b);
                         d2 = d2 + distance(keyStr2, con);
-                    }
+                    }*/
 
-                    if (d2 < d1) {
-                        curl = url2;
-                        d1 = d2;
-                    }
-                }
+                    //if (d2 < d1) {
+                        curl = url1;
+                      //  d1 = d2;
 
 
-            Log.i(TAG4, ""+curl+" "+d1+" "+d2);
+
+
+            Log.i(TAG4, ""+curl);
             return curl;
 
         }
@@ -84,7 +84,7 @@ public class mostRelevantImage {
         }
     }
 
-    public static double distance(String a, String b)
+    /*public static double distance(String a, String b)
     {
         a = a.toLowerCase();
         b = b.toLowerCase();
@@ -103,7 +103,7 @@ public class mostRelevantImage {
             }
         }
         return costs[b.length()];
-    }
+    }*/
 
     public String loadJSONFromAsset(Context live) {
         String json = null;

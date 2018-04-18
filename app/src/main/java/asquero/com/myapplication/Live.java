@@ -48,6 +48,7 @@ public class Live extends AppCompatActivity {
     TextView searchingdata;
     int size = 0;
     int responseCounter = 0;
+    int index = 0;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -177,7 +178,7 @@ public class Live extends AppCompatActivity {
                                     enddate = returnFormattedDate(enddate, site);
 
                                     mostRelevantImage mri = new mostRelevantImage();
-                                    String url = mri.findMostPerfectImage(code, name, startdate, enddate, context, i);
+                                    String url = mri.findMostPerfectImage(code, name, startdate, enddate, context, index++);
 
                                     if (url.isEmpty()) {
                                         url = "https://www.computerhope.com/jargon/e/error.gif";
@@ -228,7 +229,7 @@ public class Live extends AppCompatActivity {
                             noInternetConnection.setVisibility(View.VISIBLE);
                             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         //Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
                     }

@@ -24,6 +24,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Downloader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +57,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter eventListAdapter;
@@ -63,13 +67,10 @@ public class MainActivity extends AppCompatActivity{
     String cdmessage;
     String cdmessage_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/cdmessage/?format=json";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -84,29 +85,32 @@ public class MainActivity extends AppCompatActivity{
         TextView cdm = (TextView) findViewById(R.id.message);
         message(cdmessage_URL, cdm);
 
-        for (int i = 0; i<= 2 ; i++){
-            if (i==0) {
-                EventList listItem = new EventList("Live:"," One's which have started earliest", (R.drawable.live));
-                listEvent.add(listItem);
-            }
-            if (i==1) {
-                EventList listItem = new EventList("Upcoming:"," One's which are the closest in time to start", (R.drawable.upcoming));
-                listEvent.add(listItem);
-            }
-            if (i==2) {
-                EventList listItem = new EventList("Ended:"," One's which have most recently ended", (R.drawable.ended));
-                listEvent.add(listItem);
-            }
-        }
+        /*//for (int i = 0; i<= 2 ; i++){
+            //if (i==0) {
+                //EventList listItem = new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.live));
+                listEvent.add(new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.live)));
+            //}
+            //if (i==1) {
+                //EventList listItem = new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcoming));
+                listEvent.add(new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcoming)));
+            //}
+            //if (i==2) {
+                //EventList listItem = new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.ended));
+                listEvent.add(new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.ended)));
+            //}
+        //}*/
 
-        eventListAdapter = new EventListAdapter(listEvent, this);
-        recyclerView.setAdapter(eventListAdapter);
+        /*eventListAdapter = new EventListAdapter(listEvent, this);
+        recyclerView.setAdapter(eventListAdapter);*/
+
+        additems aiObj = new additems();
+        aiObj.execute();
 
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.navigation_menu,menu);
+        getMenuInflater().inflate(R.menu.navigation_menu, menu);
         return true;
     }
 
@@ -114,9 +118,9 @@ public class MainActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.about){
+        if (id == R.id.about) {
 
-            Intent intent = new Intent(this,About.class);
+            Intent intent = new Intent(this, About.class);
             startActivity(intent);
 
         }
@@ -150,7 +154,6 @@ public class MainActivity extends AppCompatActivity{
                                 cdm.setVisibility(View.VISIBLE);
                             }
 
-
                         } catch (Exception e) {
 
                             e.printStackTrace();
@@ -169,7 +172,7 @@ public class MainActivity extends AppCompatActivity{
                             cdm.setVisibility(View.INVISIBLE);
                             //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         //Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
                     }
@@ -189,5 +192,38 @@ public class MainActivity extends AppCompatActivity{
 
         return (networkInfo != null && networkInfo.isConnected());
 
+    }
+
+    private class additems extends AsyncTask<Void, Void, Void> {
+        protected Void doInBackground(Void... urls) {
+
+            //for (int i = 0; i<= 2 ; i++){
+            //if (i==0) {
+            //EventList listItem = new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.live));
+            listEvent.add(new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.livesmall)));
+            //}
+            //if (i==1) {
+            //EventList listItem = new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcoming));
+            listEvent.add(new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcomingsmall)));
+            //}
+            //if (i==2) {
+            //EventList listItem = new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.ended));
+            listEvent.add(new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.endedsmall)));
+            //}
+            //}
+            eventListAdapter = new EventListAdapter(listEvent, MainActivity.this);
+            recyclerView.setAdapter(eventListAdapter);
+
+            return null;
+        }
+
+        protected void onProgressUpdate(Void... progress) {
+
+        }
+
+        protected void onPostExecute(Void result) {
+
+
+        }
     }
 }

@@ -65,7 +65,7 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
             e.printStackTrace();
             //Picasso.get().load(url).placeholder(R.drawable.upcoming).error(R.drawable.ended).into(holder.imageView);
             holder.progressBar.setVisibility(View.INVISIBLE);
-            holder.imageView.setImageResource(R.drawable.ended);
+            holder.imageView.setImageResource(R.drawable.endedsmall);
         }
     }
 
