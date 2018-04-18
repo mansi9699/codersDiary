@@ -102,6 +102,7 @@ public class Ended extends AppCompatActivity {
                         } else {
                             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                             size = 0;
+                            index = 0;
                             responseCounter = 0;
                             listEnded.clear();
                             endedListAdapter.notifyDataSetChanged();

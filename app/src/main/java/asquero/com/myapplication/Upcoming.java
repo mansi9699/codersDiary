@@ -105,6 +105,7 @@ public class Upcoming extends AppCompatActivity {
                         else {
                             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                             size = 0;
+                            index = 0;
                             responseCounter = 0;
                             listUpcoming.clear();
                             upcomingListAdapter.notifyDataSetChanged();
