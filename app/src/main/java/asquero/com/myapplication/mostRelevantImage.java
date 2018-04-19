@@ -79,7 +79,8 @@ public class mostRelevantImage {
 
             e.printStackTrace();
 
-            return "https://blog.sqlauthority.com/i/a/errorstop.png";
+            //return "https://blog.sqlauthority.com/i/a/errorstop.png";
+            return "https://www.tori.ng/userfiles/image/2017/sep/27/programming.jpg";
 
         }
     }

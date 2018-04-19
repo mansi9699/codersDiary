@@ -78,30 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
         listEvent = new ArrayList<>();
 
-        //TextView tv = (TextView) findViewById(R.id.message);
-        //RelativeLayout rl = (RelativeLayout) findViewById(R.id.rl);
-        //rl.removeView(tv);
-
         TextView cdm = (TextView) findViewById(R.id.message);
         message(cdmessage_URL, cdm);
-
-        /*//for (int i = 0; i<= 2 ; i++){
-            //if (i==0) {
-                //EventList listItem = new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.live));
-                listEvent.add(new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.live)));
-            //}
-            //if (i==1) {
-                //EventList listItem = new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcoming));
-                listEvent.add(new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcoming)));
-            //}
-            //if (i==2) {
-                //EventList listItem = new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.ended));
-                listEvent.add(new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.ended)));
-            //}
-        //}*/
-
-        /*eventListAdapter = new EventListAdapter(listEvent, this);
-        recyclerView.setAdapter(eventListAdapter);*/
 
         additems aiObj = new additems();
         aiObj.execute();
@@ -148,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                             //TextView noInternetConnection = (TextView) findViewById(R.id.noInternetConnection);
 
                             if (cdmessage.toString() == "") {
-                                cdm.setVisibility(View.INVISIBLE);
+                                cdm.setVisibility(View.GONE);
                             } else {
                                 cdm.setText(cdmessage.toString());
                                 cdm.setVisibility(View.VISIBLE);
@@ -157,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
 
                             e.printStackTrace();
+                            cdm.setVisibility(View.GONE);
 
                         }
                     }
@@ -169,9 +148,10 @@ public class MainActivity extends AppCompatActivity {
                         //displaying the error in toast if occurrs
                         if (!networkConnectivity()) {
 
-                            cdm.setVisibility(View.INVISIBLE);
-                            //Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                            cdm.setVisibility(View.GONE);
+
                         } else {
+                            cdm.setVisibility(View.GONE);
                             //Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         //Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
@@ -197,20 +177,11 @@ public class MainActivity extends AppCompatActivity {
     private class additems extends AsyncTask<Void, Void, Void> {
         protected Void doInBackground(Void... urls) {
 
-            //for (int i = 0; i<= 2 ; i++){
-            //if (i==0) {
-            //EventList listItem = new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.live));
+
             listEvent.add(new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.livesmall)));
-            //}
-            //if (i==1) {
-            //EventList listItem = new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcoming));
             listEvent.add(new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcomingsmall)));
-            //}
-            //if (i==2) {
-            //EventList listItem = new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.ended));
             listEvent.add(new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.endedsmall)));
-            //}
-            //}
+
             eventListAdapter = new EventListAdapter(listEvent, MainActivity.this);
             recyclerView.setAdapter(eventListAdapter);
 
