@@ -208,38 +208,44 @@ public class DayMonthYear {
                     day = day + ch;
                 }
             }
+
+            Log.i("codechef", "***"+day+"***"+date);
         }
 
         if (contest.equalsIgnoreCase("spoj")) {
 
             //012345678910
-            //01 Apr 2018 Codechef
+            //01 Apr 2018 spoj
 
             for (int a = 0; a < date.length(); a++) {
 
                 char ch = date.charAt(a);
 
-                if (a >= 0 && a <= 1) {
+                if (a >= 8 && a <= 9) {
 
                     day = day + ch;
                 }
             }
+
+            Log.i("spoj", "***"+day+"***"+date);
         }
 
         if (contest.equalsIgnoreCase("hackerrank")) {
 
             //012345678910
-            //01 Apr 2018 Codechef
+            //2018-04-01 Hackerrank
 
             for (int a = 0; a < date.length(); a++) {
 
                 char ch = date.charAt(a);
 
-                if (a >= 0 && a <= 1) {
+                if (a >= 8 && a <= 9) {
 
                     day = day + ch;
                 }
             }
+
+            Log.i("hackerrank", "***"+day+"***"+date);
         }
 
         return Integer.parseInt(day);

@@ -287,6 +287,8 @@ public class Live extends AppCompatActivity {
         String month = dmy.returnMonth(date, contest);
         int year = dmy.returnYear(date, contest);
 
+        Log.i("dateformat", "***"+date);
+
         String str = day + "" + month + "" + year;
         return str;
 
