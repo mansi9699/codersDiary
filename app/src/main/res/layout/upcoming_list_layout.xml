@@ -80,7 +80,7 @@
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:layout_alignParentBottom="true"
@@ -91,13 +91,8 @@
                     android:id="@+id/relativeLayout1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="4dp"
-                    card_view:layout_constraintEnd_toEndOf="parent"
-                    card_view:layout_constraintHorizontal_bias="0.501"
-                    card_view:layout_constraintStart_toStartOf="parent"
-                    card_view:layout_constraintTop_toTopOf="parent">
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/contestCode"
@@ -131,60 +126,19 @@
 
                 </android.support.constraint.ConstraintLayout>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="54dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="8dp"
-                    card_view:layout_constraintBottom_toBottomOf="parent"
-                    card_view:layout_constraintHorizontal_bias="0.503"
-                    card_view:layout_constraintLeft_toLeftOf="parent"
-                    card_view:layout_constraintRight_toRightOf="parent"
-                    card_view:layout_constraintTop_toBottomOf="@+id/relativeLayout1"
-                    card_view:layout_constraintVertical_bias="1.0">
 
-                    <TextView
-                        android:id="@+id/startDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="8dp"
-                        android:text="Starts On:" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="5dp">
 
-                    <TextView
-                        android:id="@+id/startDateNum"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_toEndOf="@+id/startDate"
-                        android:text="10 September 2018" />
+                    <include layout="@layout/list_display_layout"
+                        android:id="@+id/included" />
 
-                    <TextView
-                        android:id="@+id/endDate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/startDate"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:text="Ends On:" />
-
-                    <TextView
-                        android:id="@+id/endDateNum"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignStart="@+id/startDateNum"
-                        android:layout_below="@+id/startDateNum"
-                        android:layout_marginTop="5dp"
-                        android:text="00-00-0000" />
-
-                </RelativeLayout>
-
-            </android.support.constraint.ConstraintLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
         </RelativeLayout>
 
