@@ -5,12 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +24,12 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
 
     private List<UpcomingList>list;
     private Context context;
+
+    //For storing the checked items
+    private ArrayList<UpcomingList> chkUpcoming;
+
+
+    private ArrayList<String> itemsChkd = new ArrayList<>();
 
     public UpcomingListAdapter(List<UpcomingList> listUpcoming, Upcoming upcoming) {
         this.list = listUpcoming;
@@ -36,7 +45,8 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        UpcomingList listItem = list.get(position);
+        chkUpcoming = new ArrayList<>();
+        final UpcomingList listItem = list.get(position);
 
         String cc = listItem.getContestCode();
         String cn = listItem.getContestName();
@@ -67,6 +77,34 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
             holder.progressBar.setVisibility(View.INVISIBLE);
             holder.imageView.setImageResource(R.drawable.endedsmall);
         }
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                CheckBox chk = (CheckBox) view;
+
+                //For checking the checkBox
+                if (chk.isChecked()){
+
+                    //storing the item
+                    chkUpcoming.add(list.get(position));
+                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
+
+
+                    itemsChkd.add(listItem.getContestCode());
+
+                }else if (!chk.isChecked()){
+
+                    //Storing the item
+                    chkUpcoming.remove(list.get(position));
+                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
+
+
+                    itemsChkd.remove(listItem.getContestCode());
+
+                }
+            }
+        });
     }
 
 
@@ -75,19 +113,22 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView contestCode;
         public TextView contestName;
         public TextView endDate;
         public TextView startDate;
-        public ImageView contestSourceImg;
+        ImageView contestSourceImg;
         public ImageView imageView;
-        public TextView aic;
+        TextView aic;
         public TextView contestSource;
         public ProgressBar progressBar;
+        CheckBox chkBox;
 
-        public ViewHolder(View itemView) {
+        ItemClickListener itemClickListener;
+
+        ViewHolder(View itemView) {
             super(itemView);
             contestCode = (TextView)itemView.findViewById(R.id.contestCode);
             contestName = (TextView)itemView.findViewById(R.id.contestName);
@@ -98,6 +139,18 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBarImage);
             aic = (TextView)itemView.findViewById(R.id.AICTextView);
             contestSource = (TextView)itemView.findViewById(R.id.contestSource);
+            chkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+
+            chkBox.setOnClickListener(this);
+        }
+
+        void setItemClickListener(ItemClickListener icl){
+            this.itemClickListener = icl;
+        }
+
+        @Override
+        public void onClick(View v) {
+            this.itemClickListener.onItemClick(v,getLayoutPosition());
         }
     }
 }

@@ -6,12 +6,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,11 +27,17 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
     private List<LiveList>list;
     private Context context;
 
+    //For storing the checked items
+    private ArrayList<LiveList> chkLive;
+
+
+    private ArrayList<String> itemsChkd = new ArrayList<>();
+
     //DotProgressBar dotProgressBar = (DotProgressBar) View.findViewById(R.id.dot_progress_bar);
 
 
 
-    public LiveListAdapter(List<LiveList> listLive, Live live) {
+    LiveListAdapter(List<LiveList> listLive, Live live) {
         this.list = listLive;
         this.context = live;
     }
@@ -42,7 +51,9 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        LiveList listItem = list.get(position);
+
+        chkLive = new ArrayList<>(list.size());
+        final LiveList listItem = list.get(position);
 
         String cc = listItem.getContestCode();
         String cn = listItem.getContestName();
@@ -76,6 +87,34 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
 
         }
 
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                CheckBox chk = (CheckBox) view;
+
+                //For checking the checkBox
+                if (chk.isChecked()){
+                    
+                    //storing the item
+                    chkLive.add(list.get(position));
+                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
+                    
+                    
+                    itemsChkd.add(listItem.getContestCode());
+
+                }else if (!chk.isChecked()){
+                    
+                    //Storing the item
+                    chkLive.remove(list.get(position));
+                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
+                    
+                    
+                    itemsChkd.remove(listItem.getContestCode());
+
+                }
+            }
+        });
+
     }
 
 
@@ -84,7 +123,7 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView contestCode;
         public TextView contestName;
@@ -95,18 +134,33 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
         public TextView aic;
         public TextView contestSource;
         public ProgressBar progressBar;
+        public CheckBox chkBox;
+
+        public ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            contestCode = (TextView)itemView.findViewById(R.id.contestCode);
-            contestName = (TextView)itemView.findViewById(R.id.contestName);
-            endDate = (TextView)itemView.findViewById(R.id.startDateNum);
-            startDate = (TextView)itemView.findViewById(R.id.endDateNum);
-            contestSourceImg = (ImageView)itemView.findViewById(R.id.contestSourceImage);
+            contestCode = (TextView) itemView.findViewById(R.id.contestCode);
+            contestName = (TextView) itemView.findViewById(R.id.contestName);
+            endDate = (TextView) itemView.findViewById(R.id.startDateNum);
+            startDate = (TextView) itemView.findViewById(R.id.endDateNum);
+            contestSourceImg = (ImageView) itemView.findViewById(R.id.contestSourceImage);
             imageView = (ImageView) itemView.findViewById(R.id.imageView);
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBarImage);
-            aic = (TextView)itemView.findViewById(R.id.AICTextView);
-            contestSource = (TextView)itemView.findViewById(R.id.contestSource);
+            aic = (TextView) itemView.findViewById(R.id.AICTextView);
+            contestSource = (TextView) itemView.findViewById(R.id.contestSource);
+            chkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+
+            chkBox.setOnClickListener(this);
+        }
+
+        public void setItemClickListener(ItemClickListener icl){
+            this.itemClickListener = icl;
+        }
+
+        @Override
+        public void onClick(View v) {
+            this.itemClickListener.onItemClick(v,getLayoutPosition());
         }
     }
 }
