@@ -59,10 +59,11 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter eventListAdapter;
+    private RecyclerView recyclerView, hRecyclerView;
+    private RecyclerView.Adapter eventListAdapter, hCompanyAdapter;
 
     private List<EventList> listEvent;
+    private List<HorizontalCompanyList> companyLists;
 
     String cdmessage;
     String cdmessage_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/cdmessage/?format=json";
@@ -76,7 +77,12 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        hRecyclerView = (RecyclerView) findViewById(R.id.horizontalRecyclerView);
+        hRecyclerView.setHasFixedSize(true);
+        hRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
         listEvent = new ArrayList<>();
+        companyLists = new ArrayList<>();
 
         TextView cdm = (TextView) findViewById(R.id.message);
         message(cdmessage_URL, cdm);
@@ -180,21 +186,20 @@ public class MainActivity extends AppCompatActivity {
 
             listEvent.add(new EventList("Live"," Gives you a list of coding contests, which are currently going on.", (R.drawable.livesmall)));
             listEvent.add(new EventList("Upcoming"," Gives you a list of coding contests, which are yet to be conducted.", (R.drawable.upcomingsmall)));
-            listEvent.add(new EventList("Ended"," Gives you a list of coding contests, which were once live, but now they have ended.", (R.drawable.endedsmall)));
 
             eventListAdapter = new EventListAdapter(listEvent, MainActivity.this);
             recyclerView.setAdapter(eventListAdapter);
 
+            companyLists.add(new HorizontalCompanyList("Amazon", R.drawable.default_image));
+            companyLists.add(new HorizontalCompanyList("Facebook", R.drawable.default_image));
+            companyLists.add(new HorizontalCompanyList("Google", R.drawable.default_image));
+            companyLists.add(new HorizontalCompanyList("Microsoft", R.drawable.default_image));
+
+            hCompanyAdapter = new HorizontalCompanyAdapter(companyLists,MainActivity.this);
+            hRecyclerView.setAdapter(hCompanyAdapter);
+
             return null;
         }
-
-        protected void onProgressUpdate(Void... progress) {
-
-        }
-
-        protected void onPostExecute(Void result) {
-
-
-        }
     }
+
 }

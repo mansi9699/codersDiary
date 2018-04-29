@@ -29,6 +29,7 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder>
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_list_layout,parent,false);
         return new ViewHolder(v);
     }
@@ -53,10 +54,7 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder>
                     Intent intent = new Intent(context,Upcoming.class);
                     context.startActivity(intent);
                 }
-                else if (position == 2){
-                    Intent intent = new Intent(context, Ended.class);
-                    context.startActivity(intent);
-                }
+
             }
         });
 
@@ -64,7 +62,7 @@ class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.ViewHolder>
 
     @Override
     public int getItemCount() {
-        return 3;
+        return listEvent.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
