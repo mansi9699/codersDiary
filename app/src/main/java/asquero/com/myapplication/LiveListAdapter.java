@@ -1,5 +1,8 @@
 package asquero.com.myapplication;
 
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.content.Context;
 
@@ -7,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -49,8 +53,9 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
         return new ViewHolder(v);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
         chkLive = new ArrayList<>(list.size());
         final LiveList listItem = list.get(position);
@@ -63,10 +68,10 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
 
         String url = listItem.getImageUrl();
 
-        holder.contestCode.setText(""+cc);
+        holder.contestCode.setText(cc);
         holder.contestName.setText(cn);
-        holder.endDate.setText(""+(cs));
-        holder.startDate.setText(""+(ce));
+        holder.endDate.setText(cs);
+        holder.startDate.setText(ce);
         holder.contestSourceImg.setImageResource(listItem.getContestSourceImg());
         holder.aic.setText(listItem.getAIC());
         holder.progressBar.setVisibility(View.VISIBLE);
@@ -87,33 +92,64 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
 
         }
 
-        holder.setItemClickListener(new ItemClickListener() {
+        final Drawable drawable = context.getDrawable(R.drawable.ic_notification_unchecked);
+        final Drawable drawable1 = context.getDrawable(R.drawable.ic_turn_notifications_checked);
+
+        holder.notificationBell.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                CheckBox chk = (CheckBox) view;
+            public void onClick(View v) {
 
-                //For checking the checkBox
-                if (chk.isChecked()){
-                    
+                //if (holder.notificationBell.getDrawable().equals(drawable)){
+
                     //storing the item
-                    chkLive.add(list.get(position));
-                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
-                    
-                    
-                    itemsChkd.add(listItem.getContestCode());
+                    holder.notificationBell.setImageResource(R.drawable.ic_turn_notifications_checked);
+                  //  Toast.makeText(context, "Notification Checked", Toast.LENGTH_SHORT).show();
 
-                }else if (!chk.isChecked()){
-                    
+
+                    //itemsChkd.add(listItem.getContestCode());
+
+//                }else
+                    if (holder.notificationBell.getDrawable().equals(drawable1)){
+
                     //Storing the item
-                    chkLive.remove(list.get(position));
-                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
-                    
-                    
+                    holder.notificationBell.setImageResource(R.drawable.ic_notification_unchecked);
+                  Toast.makeText(context, "unchecked", Toast.LENGTH_SHORT).show();
+
+
                     itemsChkd.remove(listItem.getContestCode());
 
                 }
+
             }
         });
+
+        /*holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ImageView nB = (ImageView) view;
+
+                //For checking the checkBox
+                if (nB.getDrawable().getConstantState() == nB.getResources().getDrawable(R.drawable.ic_notification_unchecked).getConstantState()){
+
+                    //storing the item
+                    nB.setImageResource(R.drawable.ic_turn_notifications_checked);
+                    Toast.makeText(view.getContext(), "Notification Checked", Toast.LENGTH_SHORT).show();
+
+
+                    itemsChkd.add(detailList.getContestCode());
+
+                }else if (nB.getDrawable().getConstantState() == nB.getResources().getDrawable(R.drawable.ic_turn_notifications_checked).getConstantState()){
+
+                    //Storing the item
+                    nB.setImageResource(R.drawable.ic_notification_unchecked);
+                    Toast.makeText(view.getContext(), detailList.getContestCode(), Toast.LENGTH_SHORT).show();
+
+
+                    itemsChkd.remove(detailList.getContestCode());
+
+                }
+            }
+        });*/
 
     }
 
@@ -134,7 +170,7 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
         public TextView aic;
         public TextView contestSource;
         public ProgressBar progressBar;
-        public CheckBox chkBox;
+        ImageButton notificationBell;
 
         public ItemClickListener itemClickListener;
 
@@ -149,9 +185,9 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBarImage);
             aic = (TextView) itemView.findViewById(R.id.AICTextView);
             contestSource = (TextView) itemView.findViewById(R.id.contestSource);
-            chkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+            notificationBell = (ImageButton) itemView.findViewById(R.id.notificationBell);
 
-            chkBox.setOnClickListener(this);
+            notificationBell.setOnClickListener(this);
         }
 
         public void setItemClickListener(ItemClickListener icl){

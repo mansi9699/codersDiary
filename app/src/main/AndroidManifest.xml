@@ -23,8 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:label="@string/coder_s_diary"/>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/coder_s_diary" />
         <activity
             android:name=".Live"
             android:parentActivityName=".MainActivity" />
@@ -32,11 +33,14 @@
             android:name=".Upcoming"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".Ended"
-            android:parentActivityName=".MainActivity" />
-        <activity
             android:name=".About"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DetailActivity"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ContestDetail"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

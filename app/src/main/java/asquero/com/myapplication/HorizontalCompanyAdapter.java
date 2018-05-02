@@ -16,7 +16,7 @@ public class HorizontalCompanyAdapter extends RecyclerView.Adapter<HorizontalCom
     private List<HorizontalCompanyList> horizontalCompanyLists;
     private Context context;
 
-    public HorizontalCompanyAdapter(List<HorizontalCompanyList> companyLists, Context context) {
+    HorizontalCompanyAdapter(List<HorizontalCompanyList> companyLists, Context context) {
         this.horizontalCompanyLists = companyLists;
         this.context = context;
     }
@@ -41,12 +41,12 @@ public class HorizontalCompanyAdapter extends RecyclerView.Adapter<HorizontalCom
         return horizontalCompanyLists.size();
     }
 
-    public class HorizontalViewHolder extends RecyclerView.ViewHolder{
+    class HorizontalViewHolder extends RecyclerView.ViewHolder{
 
         private ImageView hIView;
         private TextView hTView;
 
-        public HorizontalViewHolder(View itemView) {
+        HorizontalViewHolder(View itemView) {
             super(itemView);
 
             hTView = (TextView) itemView.findViewById(R.id.hTextView);

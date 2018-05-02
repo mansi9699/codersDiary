@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -44,7 +45,7 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
         chkUpcoming = new ArrayList<>();
         final UpcomingList listItem = list.get(position);
 
@@ -78,33 +79,60 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
             holder.imageView.setImageResource(R.drawable.endedsmall);
         }
 
-        holder.setItemClickListener(new ItemClickListener() {
+        holder.notificationBell.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                CheckBox chk = (CheckBox) view;
+            public void onClick(View v) {
 
-                //For checking the checkBox
-                if (chk.isChecked()){
+                if (holder.notificationBell.getDrawable().getConstantState() == holder.notificationBell.getResources().getDrawable(R.drawable.ic_notification_unchecked).getConstantState()){
 
                     //storing the item
-                    chkUpcoming.add(list.get(position));
-                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
+                    holder.notificationBell.setImageResource(R.drawable.ic_turn_notifications_checked);
+                    Toast.makeText(context, "Notification Checked", Toast.LENGTH_SHORT).show();
 
 
                     itemsChkd.add(listItem.getContestCode());
 
-                }else if (!chk.isChecked()){
+                }else if (holder.notificationBell.getDrawable().getConstantState() == holder.notificationBell.getResources().getDrawable(R.drawable.ic_turn_notifications_checked).getConstantState()){
 
                     //Storing the item
-                    chkUpcoming.remove(list.get(position));
-                    Toast.makeText(view.getContext(), listItem.getContestCode(), Toast.LENGTH_SHORT).show();
+                    holder.notificationBell.setImageResource(R.drawable.ic_notification_unchecked);
+                    Toast.makeText(context, "unchecked", Toast.LENGTH_SHORT).show();
 
 
                     itemsChkd.remove(listItem.getContestCode());
 
                 }
+
             }
         });
+
+        /*holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                ImageView nB = (ImageView) view;
+
+                //For checking the checkBox
+                if (nB.getDrawable().getConstantState() == nB.getResources().getDrawable(R.drawable.ic_notification_unchecked).getConstantState()){
+
+                    //storing the item
+                    nB.setImageResource(R.drawable.ic_turn_notifications_checked);
+                    Toast.makeText(view.getContext(), "Notification Checked", Toast.LENGTH_SHORT).show();
+
+
+                    itemsChkd.add(detailList.getContestCode());
+
+                }else if (nB.getDrawable().getConstantState() == nB.getResources().getDrawable(R.drawable.ic_turn_notifications_checked).getConstantState()){
+
+                    //Storing the item
+                    nB.setImageResource(R.drawable.ic_notification_unchecked);
+                    Toast.makeText(view.getContext(), detailList.getContestCode(), Toast.LENGTH_SHORT).show();
+
+
+                    itemsChkd.remove(detailList.getContestCode());
+
+                }
+            }
+        });*/
     }
 
 
@@ -124,7 +152,7 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
         TextView aic;
         public TextView contestSource;
         public ProgressBar progressBar;
-        CheckBox chkBox;
+        ImageButton notificationBell;
 
         ItemClickListener itemClickListener;
 
@@ -139,9 +167,9 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
             progressBar = (ProgressBar) itemView.findViewById(R.id.progressBarImage);
             aic = (TextView)itemView.findViewById(R.id.AICTextView);
             contestSource = (TextView)itemView.findViewById(R.id.contestSource);
-            chkBox = (CheckBox) itemView.findViewById(R.id.checkBox);
+            notificationBell = (ImageButton) itemView.findViewById(R.id.notificationBell);
 
-            chkBox.setOnClickListener(this);
+            notificationBell.setOnClickListener(this);
         }
 
         void setItemClickListener(ItemClickListener icl){

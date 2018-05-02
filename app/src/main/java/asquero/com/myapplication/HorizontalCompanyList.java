@@ -5,7 +5,7 @@ public class HorizontalCompanyList {
     private String company;
     private int companyImage;
 
-    public HorizontalCompanyList(String company, int companyImage) {
+    HorizontalCompanyList(String company, int companyImage) {
         this.company = company;
         this.companyImage = companyImage;
     }

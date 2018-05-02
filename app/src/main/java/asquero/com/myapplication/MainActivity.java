@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -59,11 +60,12 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView, hRecyclerView;
-    private RecyclerView.Adapter eventListAdapter, hCompanyAdapter;
+    private RecyclerView recyclerView, hRecyclerView, gRecyclerView;
+    private RecyclerView.Adapter eventListAdapter, hCompanyAdapter, gCompanyAdapter;
 
     private List<EventList> listEvent;
     private List<HorizontalCompanyList> companyLists;
+    private List<GridCompanyList> gCompanyLists;
 
     String cdmessage;
     String cdmessage_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/cdmessage/?format=json";
@@ -81,8 +83,13 @@ public class MainActivity extends AppCompatActivity {
         hRecyclerView.setHasFixedSize(true);
         hRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
+        gRecyclerView = (RecyclerView) findViewById(R.id.GridRecyclerView);
+        gRecyclerView.setHasFixedSize(true);
+        gRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+
         listEvent = new ArrayList<>();
         companyLists = new ArrayList<>();
+        gCompanyLists = new ArrayList<>();
 
         TextView cdm = (TextView) findViewById(R.id.message);
         message(cdmessage_URL, cdm);
@@ -197,6 +204,16 @@ public class MainActivity extends AppCompatActivity {
 
             hCompanyAdapter = new HorizontalCompanyAdapter(companyLists,MainActivity.this);
             hRecyclerView.setAdapter(hCompanyAdapter);
+
+            gCompanyLists.add(new GridCompanyList("CodeChef", R.drawable.default_image));
+            gCompanyLists.add(new GridCompanyList("CodeForces", R.drawable.default_image));
+            gCompanyLists.add(new GridCompanyList("HackerRank", R.drawable.default_image));
+            gCompanyLists.add(new GridCompanyList("HackerEarth", R.drawable.default_image));
+            gCompanyLists.add(new GridCompanyList("SPOJ", R.drawable.default_image));
+            gCompanyLists.add(new GridCompanyList("TopCoder", R.drawable.default_image));
+
+            gCompanyAdapter = new GridCompanyAdapter(gCompanyLists,MainActivity.this);
+            gRecyclerView.setAdapter(gCompanyAdapter);
 
             return null;
         }

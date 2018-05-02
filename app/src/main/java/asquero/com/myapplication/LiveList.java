@@ -1,11 +1,5 @@
 package asquero.com.myapplication;
 
-import java.util.Comparator;
-
-/**
- * Created by Anmol on 10-Apr-18.
- */
-
 class LiveList{
 
     private String contestCode;
@@ -17,7 +11,7 @@ class LiveList{
     private String AIC;
     private String contestSource;
 
-    public LiveList(String contestCode, String contestName, String startDate, String endDate, int contestSourceImg , String imageUrl, String AIC, String contestSource) {
+    LiveList(String contestCode, String contestName, String startDate, String endDate, int contestSourceImg, String imageUrl, String AIC, String contestSource) {
         this.contestCode = contestCode;
         this.contestName = contestName;
         this.startDate = startDate;
