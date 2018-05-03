@@ -39,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
 
     Bundle extras;
     private String CompanyName;
+    private int CompanyImage;
 
     private String JSON_Codechef_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/codechef/?cstatus=1&format=json";
     private String JSON_Spoj_URL = "http://codersdiary-env.jrpma4ezhw.us-east-2.elasticbeanstalk.com/spoj/?cstatus=1&format=json";
@@ -60,8 +61,10 @@ public class DetailActivity extends AppCompatActivity {
 
         extras = getIntent().getExtras();
 
-        if (extras!=null)
-        CompanyName = extras.getString("CompanyName");
+        if (extras!=null) {
+            CompanyName = extras.getString("CompanyName");
+            CompanyImage = extras.getInt("CompanyImage");
+        }
 
         getSupportActionBar().setTitle(CompanyName);
 
@@ -70,6 +73,10 @@ public class DetailActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         detailLists = new ArrayList<>();
+
+
+        //Live List Loader starts here
+
 
         noInternetConnection = (TextView) findViewById(R.id.noInternetConnection);
 
@@ -187,7 +194,7 @@ public class DetailActivity extends AppCompatActivity {
                                         url = "https://www.computerhope.com/jargon/e/error.gif";
                                     }
 
-                                    DetailList detailListObj = new DetailList(code, name, startdate, enddate, contestImageSource, url, name, "Pexels.com");
+                                    DetailList detailListObj = new DetailList(code, name, startdate, enddate, contestImageSource, url, name, "Pexels.com", CompanyImage);
 
                                     detailLists.add(detailListObj);
                                 }
@@ -329,5 +336,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
     }
+
+    //Live List Loader ends here
 
 }

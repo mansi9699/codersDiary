@@ -10,8 +10,9 @@ class DetailList {
     private String imageUrl;
     private String AIC;
     private String contestSource;
+    private int srcCompanyImage;
 
-    DetailList(String contestCode, String contestName, String startDate, String endDate, int contestSourceImg, String imageUrl, String AIC, String contestSource) {
+    DetailList(String contestCode, String contestName, String startDate, String endDate, int contestSourceImg, String imageUrl, String AIC, String contestSource, int srcCompanyImage) {
         this.contestCode = contestCode;
         this.contestName = contestName;
         this.startDate = startDate;
@@ -20,6 +21,7 @@ class DetailList {
         this.imageUrl = imageUrl;
         this.AIC = AIC;
         this.contestSource = contestSource;
+        this.srcCompanyImage = srcCompanyImage;
     }
 
     public String getContestCode() {
@@ -52,5 +54,9 @@ class DetailList {
 
     public String getContestSource() {
         return contestSource;
+    }
+
+    public int getSrcCompanyImage() {
+        return srcCompanyImage;
     }
 }

@@ -54,6 +54,7 @@ public class DetailListAdapter extends RecyclerView.Adapter<DetailListAdapter.De
         String cs = detailList.getStartDate();
         String ce = detailList.getEndDate();
         String csrc = detailList.getContestSource();
+        final int sci = detailList.getSrcCompanyImage();
 
         String url = detailList.getImageUrl();
 
@@ -135,12 +136,17 @@ public class DetailListAdapter extends RecyclerView.Adapter<DetailListAdapter.De
             }
         });*/
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, ContestDetail.class);
-                intent.putExtra("ContestHostingCompany","Company");
-                context.startActivity(intent);
+                for (int i = 0; i < list.size(); i++){
+                    Intent intent = new Intent(context,ContestDetail.class);
+                    intent.putExtra("ContestHostingCompany","Details for "+list.get(position).getContestName());
+                    intent.putExtra("parentName","Details");
+                    intent.putExtra("CompanyImage", sci);
+                    context.startActivity(intent);
+                    break;
+                }
             }
         });
     }

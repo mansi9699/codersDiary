@@ -1,6 +1,7 @@
 package asquero.com.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +47,7 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         chkUpcoming = new ArrayList<>();
         final UpcomingList listItem = list.get(position);
 
@@ -133,6 +135,19 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
                 }
             }
         });*/
+
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < list.size(); i++){
+                    Intent intent = new Intent(context,ContestDetail.class);
+                    intent.putExtra("ContestHostingCompany","Details for "+list.get(position).getContestName());
+                    intent.putExtra("parentName","Upcoming");
+                    context.startActivity(intent);
+                    break;
+                }
+            }
+        });
     }
 
 
@@ -154,6 +169,8 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
         public ProgressBar progressBar;
         ImageButton notificationBell;
 
+        RelativeLayout relativeLayout;
+
         ItemClickListener itemClickListener;
 
         ViewHolder(View itemView) {
@@ -168,6 +185,8 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
             aic = (TextView)itemView.findViewById(R.id.AICTextView);
             contestSource = (TextView)itemView.findViewById(R.id.contestSource);
             notificationBell = (ImageButton) itemView.findViewById(R.id.notificationBell);
+
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.parent_layout1);
 
             notificationBell.setOnClickListener(this);
         }

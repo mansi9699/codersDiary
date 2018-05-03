@@ -1,5 +1,6 @@
 package asquero.com.myapplication;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -13,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +57,7 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         chkLive = new ArrayList<>(list.size());
         final LiveList listItem = list.get(position);
@@ -123,33 +125,18 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
             }
         });
 
-        /*holder.setItemClickListener(new ItemClickListener() {
+        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(View view, int position) {
-                ImageView nB = (ImageView) view;
-
-                //For checking the checkBox
-                if (nB.getDrawable().getConstantState() == nB.getResources().getDrawable(R.drawable.ic_notification_unchecked).getConstantState()){
-
-                    //storing the item
-                    nB.setImageResource(R.drawable.ic_turn_notifications_checked);
-                    Toast.makeText(view.getContext(), "Notification Checked", Toast.LENGTH_SHORT).show();
-
-
-                    itemsChkd.add(detailList.getContestCode());
-
-                }else if (nB.getDrawable().getConstantState() == nB.getResources().getDrawable(R.drawable.ic_turn_notifications_checked).getConstantState()){
-
-                    //Storing the item
-                    nB.setImageResource(R.drawable.ic_notification_unchecked);
-                    Toast.makeText(view.getContext(), detailList.getContestCode(), Toast.LENGTH_SHORT).show();
-
-
-                    itemsChkd.remove(detailList.getContestCode());
-
+            public void onClick(View v) {
+                for (int i = 0; i < list.size(); i++){
+                    Intent intent = new Intent(context,ContestDetail.class);
+                    intent.putExtra("ContestHostingCompany","Details for "+list.get(position).getContestName());
+                    intent.putExtra("parentName","Live");
+                    context.startActivity(intent);
+                    break;
                 }
             }
-        });*/
+        });
 
     }
 
@@ -172,6 +159,8 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
         public ProgressBar progressBar;
         ImageButton notificationBell;
 
+        RelativeLayout relativeLayout;
+
         public ItemClickListener itemClickListener;
 
         public ViewHolder(View itemView) {
@@ -186,6 +175,7 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
             aic = (TextView) itemView.findViewById(R.id.AICTextView);
             contestSource = (TextView) itemView.findViewById(R.id.contestSource);
             notificationBell = (ImageButton) itemView.findViewById(R.id.notificationBell);
+            relativeLayout = (RelativeLayout) itemView.findViewById(R.id.parent_layout1);
 
             notificationBell.setOnClickListener(this);
         }
