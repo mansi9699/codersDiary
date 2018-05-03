@@ -4,12 +4,10 @@ class ContestDetailList {
 
     private String contestHeading;
     private String contestDetails;
-    private int svgImage;
 
-    public ContestDetailList(String contestHeading, String contestDetails, int svgImage) {
+    ContestDetailList(String contestHeading, String contestDetails) {
         this.contestHeading = contestHeading;
         this.contestDetails = contestDetails;
-        this.svgImage = svgImage;
     }
 
     public String getContestHeading() {
@@ -20,7 +18,4 @@ class ContestDetailList {
         return contestDetails;
     }
 
-    public int getSvgImage() {
-        return svgImage;
-    }
 }

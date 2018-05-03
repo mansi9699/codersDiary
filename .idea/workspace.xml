@@ -11,10 +11,7 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="237e8573-bef1-47f1-8fcf-4d17d6eea4fc" name="assemble" comment="check box working added">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml" />
+    <list default="true" id="237e8573-bef1-47f1-8fcf-4d17d6eea4fc" name="assemble" comment="Details updated">
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" />
@@ -25,15 +22,10 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetail.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetail.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailList.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailList.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailListAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/HorizontalCompanyAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/HorizontalCompanyAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/LiveListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/LiveListAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/UpcomingListAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/UpcomingListAdapter.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java" afterPath="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_layout.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/live_list_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/live_list_layout.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/upcoming_list_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/upcoming_list_layout.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml" />
     </list>
     <list id="e121924e-9eae-47df-98cd-5354d9066113" name="Default" comment="Text darkened a bit -Anmol" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -73,28 +65,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/MainActivity.java">
+      <file leaf-file-name="ContestDetail.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetail.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="208" column="22" lean-forward="false" selection-start-line="208" selection-start-column="22" selection-end-line="208" selection-end-column="22" />
+            <state relative-caret-position="388">
+              <caret line="72" column="110" lean-forward="false" selection-start-line="72" selection-start-column="110" selection-end-line="72" selection-end-column="110" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3071#3072#0" expanded="true" />
+                <element signature="e#3123#3124#0" expanded="true" />
+                <element signature="e#3198#3199#0" expanded="true" />
+                <element signature="e#3250#3251#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ContestDetailAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContestDetail.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetail.java">
+      <file leaf-file-name="ContestDetailList.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="61" column="38" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3247#3248#0" expanded="true" />
-                <element signature="e#3299#3300#0" expanded="true" />
-                <element signature="e#3374#3375#0" expanded="true" />
-                <element signature="e#3426#3427#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" column="66" lean-forward="false" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,8 +104,8 @@
       <file leaf-file-name="contest_detail_list_layout.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+            <state relative-caret-position="578">
+              <caret line="34" column="46" lean-forward="false" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -115,8 +117,8 @@
       <file leaf-file-name="contest_detail_layout.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contest_detail_layout.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+            <state relative-caret-position="254">
+              <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -2087,16 +2089,16 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/list_display_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/live_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/upcoming_list_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/UpcomingListAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/LiveListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/HorizontalCompanyAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/UpcomingListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/LiveListAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetail.java" />
       </list>
     </option>
@@ -2210,7 +2212,7 @@
     <property name="sync.plugin.last.upgrade.timestamp" value="1524073374731" />
     <property name="device.picker.selection" value="IZFMMRS8OZMV5SWK" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1525370827020" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1525373306937" />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
@@ -2689,7 +2691,21 @@
       <option name="project" value="LOCAL" />
       <updated>1525285680102</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Details added">
+      <created>1525372280245</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1525372280245</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Details updated">
+      <created>1525372789261</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1525372789261</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2747,7 +2763,9 @@
     <MESSAGE value="Text darkened a bit -Anmol" />
     <MESSAGE value="layout changes" />
     <MESSAGE value="check box working added" />
-    <option name="LAST_COMMIT_MESSAGE" value="check box working added" />
+    <MESSAGE value="Details added" />
+    <MESSAGE value="Details updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Details updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2863,17 +2881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_live.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="62" lean-forward="false" selection-start-line="3" selection-start-column="62" selection-end-line="3" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://E:/Android/SDK/sources/android-25/android/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="101">
@@ -2893,17 +2900,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/live_list_layout.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="43" lean-forward="false" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/upcoming_list_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="254">
@@ -2913,14 +2909,6 @@
       </provider>
       <provider editor-type-id="android-designer2">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/UpcomingListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="143" column="92" lean-forward="false" selection-start-line="143" selection-start-column="92" selection-end-line="143" selection-end-column="92" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/EventList.java">
@@ -2999,14 +2987,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/LiveListAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="132" column="84" lean-forward="false" selection-start-line="132" selection-start-column="84" selection-end-line="132" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detail_list_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -3034,37 +3014,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-          <folding>
-            <element signature="e#459#460#0" expanded="false" />
-            <element signature="e#500#501#0" expanded="false" />
-            <element signature="e#537#538#0" expanded="false" />
-            <element signature="e#569#570#0" expanded="false" />
-            <element signature="e#600#601#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/DetailList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="58" column="35" lean-forward="false" selection-start-line="58" selection-start-column="35" selection-end-line="58" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="35" column="74" lean-forward="false" selection-start-line="35" selection-start-column="74" selection-end-line="35" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1346#1347#0" expanded="false" />
-            <element signature="e#1382#1383#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3103,10 +3057,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_live.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+        <state relative-caret-position="51">
+          <caret line="3" column="62" lean-forward="false" selection-start-line="3" selection-start-column="62" selection-end-line="3" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/live_list_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="19" column="12" lean-forward="false" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -3116,8 +3081,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contest_detail_layout.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="4" lean-forward="false" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
+        <state relative-caret-position="254">
+          <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -3125,16 +3090,59 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contest_detail_list_layout.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="46" lean-forward="false" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/UpcomingListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1490">
+          <caret line="145" column="83" lean-forward="false" selection-start-line="145" selection-start-column="83" selection-end-line="145" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/LiveListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="66" lean-forward="false" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetailAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="4" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/asquero/com/myapplication/ContestDetail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="61" column="38" lean-forward="false" selection-start-line="61" selection-start-column="38" selection-end-line="61" selection-end-column="38" />
+        <state relative-caret-position="388">
+          <caret line="72" column="110" lean-forward="false" selection-start-line="72" selection-start-column="110" selection-end-line="72" selection-end-column="110" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3247#3248#0" expanded="true" />
-            <element signature="e#3299#3300#0" expanded="true" />
-            <element signature="e#3374#3375#0" expanded="true" />
-            <element signature="e#3426#3427#0" expanded="true" />
+            <element signature="e#3071#3072#0" expanded="true" />
+            <element signature="e#3123#3124#0" expanded="true" />
+            <element signature="e#3198#3199#0" expanded="true" />
+            <element signature="e#3250#3251#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -15,7 +15,7 @@ public class ContestDetailAdapter extends RecyclerView.Adapter<ContestDetailAdap
     private List<ContestDetailList> cdList;
     private Context context;
 
-    public ContestDetailAdapter(List<ContestDetailList> cdList, Context context) {
+    ContestDetailAdapter(List<ContestDetailList> cdList, Context context) {
         this.cdList = cdList;
         this.context = context;
     }
@@ -33,7 +33,6 @@ public class ContestDetailAdapter extends RecyclerView.Adapter<ContestDetailAdap
 
         holder.heading.setText(contestDetailList.getContestHeading());
         holder.details.setText(contestDetailList.getContestDetails());
-        holder.svgImage.setImageResource(contestDetailList.getSvgImage());
 
     }
 
@@ -44,13 +43,11 @@ public class ContestDetailAdapter extends RecyclerView.Adapter<ContestDetailAdap
 
     public class ContestDetailViewAdapter extends RecyclerView.ViewHolder{
 
-        public ImageView svgImage;
         public TextView heading, details;
 
         public ContestDetailViewAdapter(View itemView) {
             super(itemView);
 
-            svgImage = (ImageView) itemView.findViewById(R.id.SvgImage);
             heading = (TextView) itemView.findViewById(R.id.heading);
             details = (TextView) itemView.findViewById(R.id.details);
 

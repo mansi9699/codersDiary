@@ -10,6 +10,13 @@
             android:elevation="5dp">
 
             <ImageView
+                android:id="@+id/AlgoImg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/default_image"
+                android:scaleType="fitCenter"/>
+
+            <ImageView
                 android:id="@+id/ContestHostingCompanyImage"
                 android:layout_width="75dp"
                 android:layout_height="75dp"

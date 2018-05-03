@@ -62,15 +62,15 @@ public class ContestDetail extends AppCompatActivity {
             rl.setVisibility(View.GONE);
         }*/
 
-        contestDetailLists.add(new ContestDetailList("About","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("Start","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("End","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("Duration","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("Prizes","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("Rules","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("Programming Languages","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("Eligibility Criteria","Details Go Here",R.drawable.app_icon));
-        contestDetailLists.add(new ContestDetailList("For Any Queries And More Information","Details Go Here",R.drawable.app_icon));
+        contestDetailLists.add(new ContestDetailList("About","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("Start","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("End","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("Duration","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("Prizes","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("Rules","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("Programming Languages","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("Eligibility Criteria","Details Go Here"));
+        contestDetailLists.add(new ContestDetailList("For Any Queries And More Information","Details Go Here"));
 
         ContestDetailAdapter = new ContestDetailAdapter(contestDetailLists, ContestDetail.this);
         recyclerView.setAdapter(ContestDetailAdapter);
