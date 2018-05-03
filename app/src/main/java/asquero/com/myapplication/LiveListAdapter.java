@@ -132,6 +132,7 @@ public class LiveListAdapter extends RecyclerView.Adapter<LiveListAdapter.ViewHo
                     Intent intent = new Intent(context,ContestDetail.class);
                     intent.putExtra("ContestHostingCompany","Details for "+list.get(position).getContestName());
                     intent.putExtra("parentName","Live");
+                    intent.putExtra("CompanyImage",listItem.getContestSourceImg());
                     context.startActivity(intent);
                     break;
                 }

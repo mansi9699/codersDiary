@@ -57,10 +57,10 @@ public class ContestDetail extends AppCompatActivity {
 
         contestDetailLists = new ArrayList<>();
 
-        if (parentActivity.equals("Live")||parentActivity.equals("Upcoming"))
+        /*if (parentActivity.equals("Live")||parentActivity.equals("Upcoming"))
         {
             rl.setVisibility(View.GONE);
-        }
+        }*/
 
         contestDetailLists.add(new ContestDetailList("About","Details Go Here",R.drawable.app_icon));
         contestDetailLists.add(new ContestDetailList("Start","Details Go Here",R.drawable.app_icon));

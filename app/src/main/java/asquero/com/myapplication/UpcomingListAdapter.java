@@ -143,6 +143,7 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingListAdapte
                     Intent intent = new Intent(context,ContestDetail.class);
                     intent.putExtra("ContestHostingCompany","Details for "+list.get(position).getContestName());
                     intent.putExtra("parentName","Upcoming");
+                    intent.putExtra("CompanyImage",listItem.getContestSourceImg());
                     context.startActivity(intent);
                     break;
                 }
