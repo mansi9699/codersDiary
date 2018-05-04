@@ -1,5 +1,8 @@
 package asquero.com.myapplication;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -8,11 +11,13 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -31,7 +36,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import asquero.com.myapplication.sqdatabase.MyDBHandler;
+import asquero.com.myapplication.sqdatabase.database;
+
 public class Upcoming extends AppCompatActivity {
+
+    MyDBHandler dbHandler;
+
+    NotificationCompat.Builder notification;
+    private static final int uniqueID = 96990;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter upcomingListAdapter;
@@ -48,6 +61,7 @@ public class Upcoming extends AppCompatActivity {
     TextView noInternetConnection;
     ProgressBar progressBar;
     TextView searchingdata;
+    ImageButton imbtn;
     int size = 0;
     int responseCounter = 0;
     int index = 0;
@@ -56,6 +70,8 @@ public class Upcoming extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upcoming);
+
+        dbHandler = new MyDBHandler(this, null, null, 1);
 
         getSupportActionBar().setTitle("Upcoming");
 
@@ -66,10 +82,14 @@ public class Upcoming extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        notification = new NotificationCompat.Builder(this);
+        notification.setAutoCancel(true);
+
+        imbtn = (ImageButton)findViewById(R.id.notificationBell);
+
         listUpcoming = new ArrayList<>();
 
         noInternetConnection = (TextView) findViewById(R.id.noInternetConnection);
-
         if(!networkConnectivity()){
 
             recyclerView.setVisibility(View.INVISIBLE);
@@ -125,6 +145,37 @@ public class Upcoming extends AppCompatActivity {
 
     }
 
+ public void buttonClicked(View view){
+
+        if(imbtn.isEnabled()){
+
+            database data = new database("Add");
+            dbHandler.addData(data);
+
+            notification.setSmallIcon(R.drawable.logo);
+            notification.setTicker("Coder's Diary");
+            notification.setWhen(System.currentTimeMillis());
+            notification.setContentTitle("Contest Live");
+            notification.setContentText("4 May, 2018");
+
+            Intent intent = new Intent(this, Upcoming.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            notification.setContentIntent(pendingIntent);
+
+            NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            try {
+                 nm.notify(uniqueID, notification.build());
+                 Log.e("notification","ACCESSED");
+            }
+            catch(Exception e) {
+                 Log.e("notification","error");
+            }
+        }
+
+        else{
+          dbHandler.deleteData("Add");
+        }
+    }
 
     public void loadUpcomingData(TextView noInternetConnection) {
 
